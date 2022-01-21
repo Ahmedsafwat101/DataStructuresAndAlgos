@@ -15,17 +15,18 @@ The confidence in HEAP data structure is guranteed if you finish below mentioned
 - A simple array can be used to represent a Heap where array indices refer to the node position in the tree.
 - Parent and child nodes can be accessed with indices:
    - A root node｜i = 0, the first item of the array
-   - A parent node｜parent(i) = i / 2
-   - A left child node｜left(i) = 2i
-A right child node｜right(i)=2i+1
-Two type of Heaps — Min Heap, Max Heap
-Min Heap — the parent node always has a smaller value than the child nodes.
-Max Heap — the parent node is always larger than the child node value.
-Usually, when a type is not mentioned, it refers to the MinHeap. Python Heap has minHeap as default.
-In python, theheapqmodule provides the basic features for Heap data structure.
-minHeap are used in tasks related to scheduling or assignment. A more detailed explanation is under the Patterns section below.
-Heap Operations
-The basic operations in Python heapq are:
+   - A parent node｜parent(i) = (i-1) / 2
+   - A left child node｜left(i) = 2i+1
+   - A right child node｜right(i)= 2i+2
+- Two type of Heaps — Min Heap, Max Heap
+  - Min Heap — the parent node always has a smaller value than the child nodes.
+  - Max Heap — the parent node is always larger than the child node value.	
+	
+- Usually, when a type is not mentioned, it refers to the MinHeap. java PriorityQueue has minHeap as default.
+- minHeap are used in tasks related to scheduling or assignment. A more detailed explanation is under the Patterns section below.
+	
+# Heap Operations
+The basic operations in java PriorityQueue are:
 
 heapify
 The heapify operation converts the iterable array heap into a tree structure w.r.t heap order.
@@ -41,99 +42,19 @@ hq.heappush(minHeap, 5)
 heappop
 This operation is to remove the element from the heap. By default it is minHeap, so this operation removes the min element from the minHeap. And for maxHeap, it is the maximum element. Post removal, heapify is called internally to maintain the heap order.
 
-import heapq as hq
-minHeap = [5, 6, 2]
+	
+
+Integer[] numArr ={1,2,1,3,3,5,7};
+PriorityQueue<Integer> minHeap = new PriorityQueue();
 # this is done to convert iterable into a heap tree
-hq.heapify(minHeap) 
+minHeap.addAll(Arrays.asList(numArr));
+
+	
 # Getting top element from the heap
 value = hq.heappop(minHeap) # the value here is 2 as 2 is the minimum value. 
 Other operations in heapq python module includes heappushpop ,heapreplace , nlargest , nsmallest .
 
-A simple Python implementation of MIN HEAP
-class MinHeap:
-  """
-  Min Heap Implementaion
-  """
-  
-  def __init__(self, array):
-    """Initialization method."""
-      
-    # Build heap. Below statement is to convert 
-    # an array into heap order. This is similar to 
-    # heapq.heapify
-      
-    self.heap = self.buildHeap(array)
 
-  # TC O(N) | SC O(1) 
-  def buildHeap(self, array):
-    """Build heap from iterable"""
-    
-    firstParentIdx = (len(array)-2)//2
-    for currentIdx in reversed(range(firstParentIdx + 1)):
-      self.siftDown(currentIdx, len(array) - 1, array)
-    return array
-
-  # TC O(logN) | SC O(1) 
-  def siftDown(self, currentIdx, endIdx, heap):
-    """Sifting down operation moves the value successively
-    down the tree if its childer has smaller value.
-    This is done to maintain the heap order.
-    """
-    childOneIdx = (2*currentIdx) + 1
-    while childOneIdx < len(heap):
-      childTwoIdx = (2*currentIdx) + 2 if currentIdx*2+2 <= endIdx else -1
-      if childTwoIdx != -1 and heap[childTwoIdx] < heap[childOneIdx]:
-        idxToSwap = childTwoIdx
-      else:
-        idxToSwap = childOneIdx
-      if heap[idxToSwap] < heap[currentIdx]:
-        self.swap(currentIdx, idxToSwap, heap)
-        currentIdx = idxToSwap
-        childOneIdx = currentIdx * 2 +1
-      else:
-        break
-
-  # TC O(logN) | SC O(1) 
-  def siftUp(self, currentIdx, heap):
-    """
-    It is exact opposite of sift down. 
-    """
-    parent = (currentIdx-1)//2
-    while currentIdx > 0 and heap[parent] > heap[currentIdx]:
-      self.swap(parent, currentIdx, heap)
-      currentIdx = parent
-      parentIdx = (currentIdx-1)//2
-		
-  # TC O(1) | SC O(1) 
-  def peek(self):
-    """Get the top value of the heap.
-    It returns the smallest value in min heap.
-    """
-    return self.heap[0]
-
-  # TC O(logN) | SC O(1) 
-  def remove(self):
-    """
-    Removing an element from heap. 
-    This is similar to heaq.heappop
-    """
-    self.swap(0, len(self.heap)-1, self.heap)
-    valueToRemove = self.heap.pop()
-    self.siftDown(0, len(self.heap)-1, self.heap)
-    return valueToRemove
-
-  # TC O(logN) | SC O(1) 
-  def insert(self, value):
-    """
-    Inserting an element in the heap. 
-    Similar to heappush operation. 
-    """
-    self.heap.append(value)
-    self.siftUp(len(self.heap)-1, self.heap)
-
-  def swap(self, i, j , heap):
-    """Swap two elements in an array"""
-    heap[i], heap[j] = heap[j], heap[i]
 Problem Patterns where HEAP is used
 Based on my understanding, different questions where HEAP is common data structure to use can be categorized in following 4 categories:
 
