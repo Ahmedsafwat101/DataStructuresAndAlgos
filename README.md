@@ -105,4 +105,4 @@ All questions under one patterns has some similarities in terms of using HEAP as
 	
 To Be Continued ... 
 	
-Please don't forget to UPVOTE if you like the post :)
+Please don't forget to put a star if you like the article :)
