@@ -102,6 +102,69 @@ All questions under one patterns has some similarities in terms of using HEAP as
 <a href="https://leetcode.com/list/9t3f1x82" target="_blank">All Problems in one list</a>
 
 </details>  
+
+<details>
+    <summary>HashMap</summary>
+	<br>
+ This article is to deep dive into one of the most fundamental data structures called HashMap. The objective of this post is to understand the basics of HashMap, time complexities, and identify patterns when to use HashMap as a data structure.
+
+What is HashMap?
+- It is a type of fast key lookup data structure.
+- It is represented as list of pairs the first part of the pair is called key and the second part is called the value
+- Any value can be accessed through the unique key that hashed through hashing function and refer to specific index, the key aslo can be null.
+- Two type of Maps — the map is an interface and HashMap implements that interface, TreeMap also do the same
+  - HashMap — order pairs in order of insertion.
+  - TreeMap — Order pairs based on the key values with some overhead complexity.	
+
+
+We may think about the hashmap when we want to have constant runtime for insertion and for retrieving O(1)
+	
+# HashMap Operations
+
+# Create HashMap
+```
+HashMap<Integer,Integer> hashMap = new HashMap<>();
+```
+# Add -> O(1)	
+```
+HashMap<Integer,Integer> hashMap = new HashMap<>();
+// key: 1 & value: 5
+hashMap.put(1,5);
+hashMap.put(1,5);
+hashMap.put(2,7);
+hashMap.put(3,6);
+hashMap.put(null,4);	
+//hashMap = [(1->5),(2->7),(3->6),(null->4)]
+```	
+# Get -> O(1)	
+```
+hashMap.get(1); // return 5
+```
+# PutIfAbsent -> O(1)	
+```
+ hashMap.putIfAbsent(10,2);
+// will check if the key 10 doesn't exit will add it with its value
+```
+# PutIfAbsent -> O(1)	
+```
+hashMap.getOrDefault(10,2);
+//Returns the value to which the specified key is mapped,or defaultValue if this map contains no mapping for the key.
+```
+# ContainsKey -> O(1)		
+```
+hashMap.containsKey(10);
+//Returns true if this map contains a mapping for the specified key.
+```	
+# Remove -> ~ O(1)	
+```
+hashMap.remove(1); 
+```	
+	
+	
+<a href="https://leetcode.com/tag/hash-table" target="_blank">All Problems in one list</a>
+	
+</details>	
+	
 	
 To Be Continued ... 
 	
